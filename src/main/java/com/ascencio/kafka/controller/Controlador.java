@@ -27,9 +27,16 @@ public class Controlador {
         return respuesta;
     }
 
-    @GetMapping("/Demo")
-    public String demo(){
-        return "Funcionando :D";
+    @GetMapping("/getAll")
+    public String recibir(){
+        String mensaje = "Get Realizado";
+        try {
+            productorKafka.send(mensaje);
+            respuesta = "Proceso exitoso :D";
+        }catch (Exception e){
+            respuesta = "Error :'v";
+        }
+        return respuesta;
     }
 
 }
